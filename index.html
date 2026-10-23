@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="ta" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>தமிழ்நாடு அரசுப் பாடநூல்கள் — வகுப்பு 5 (TNSCERT Class 5)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-light: #38bdf8;
+      --bg-body: #0b1329;
+      --bg-card: #152238;
+      --bg-card-subtle: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --font-main: 'Noto Sans Tamil', 'Inter', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 80px 16px;
+      line-height: 1.6;
+    }
+    .header {
+      text-align: center;
+      max-width: 900px;
+      margin-bottom: 28px;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 132, 199, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--primary-light);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    p.subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .stat-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 4px 14px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+    .stat-chip strong {
+      color: #38bdf8;
+    }
+
+    /* Search Bar */
+    .search-container {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 14px 20px 14px 44px;
+      font-size: 15px;
+      color: #ffffff;
+      outline: none;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .search-input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #94a3b8;
+    }
+
+    /* Term Filter Tabs */
+    .term-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tab-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .tab-btn.active {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+    }
+
+    /* Subjects Grid */
+    .subjects-container {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .subject-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .subject-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .subject-icon {
+      font-size: 26px;
+    }
+    .subject-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .terms-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .term-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .term-box-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .term-box-count {
+      font-size: 11px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .lesson-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lesson-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+    }
+    .lesson-card:hover {
+      background: #253347;
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateX(2px);
+    }
+    .lesson-info {
+      overflow: hidden;
+    }
+    .lesson-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lesson-meta {
+      font-size: 11.5px;
+      color: #94a3b8;
+    }
+    .action-links {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .view-btn:hover {
+      background: #0369a1;
+    }
+    .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #334155;
+      color: #cbd5e1;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .pdf-btn:hover {
+      background: #475569;
+      color: #ffffff;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+    .footer a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge-pill">
+      <span>⚡ Cloudflare Pages Edge CDN • 100% Ultra-HD Vector Quality</span>
+    </div>
+    <h1>தமிழ்நாடு அரசுப் பாடநூல்கள் — வகுப்பு 5</h1>
+    <p class="subtitle">டிஜிட்டல் அச்சுப் பக்கங்கள் & அதிவேக வெக்டார் வியூவர் (TNSCERT Class 5 Ultra-HD Vector Repository)</p>
+    <div class="stats-row">
+      <div class="stat-chip">📚 <strong>8</strong> பாடங்கள்</div>
+      <div class="stat-chip">🗓️ <strong>3</strong> பருவங்கள் (24 நூல்கள்)</div>
+      <div class="stat-chip">📄 <strong>1,434</strong> வெக்டார் பக்கங்கள் (100% PASS)</div>
+      <div class="stat-chip">🚀 <strong>0.05 நொடி</strong> கேன்வாஸ் லோடிங்</div>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" class="search-input" placeholder="பாடம் அல்லது பக்க எண்ணைத் தேடுங்கள் (எ.கா. தமிழ் அமுது, kitchen, geometry, page 10)..." onkeyup="filterCards()"/>
+  </div>
+
+  <div class="term-tabs">
+    <button class="tab-btn active" onclick="setTermFilter('all', this)">அனைத்துப் பருவங்கள் (All Terms)</button>
+    <button class="tab-btn" onclick="setTermFilter('term1', this)">பருவம் 1 (Term 1)</button>
+    <button class="tab-btn" onclick="setTermFilter('term2', this)">பருவம் 2 (Term 2)</button>
+    <button class="tab-btn" onclick="setTermFilter('term3', this)">பருவம் 3 (Term 3)</button>
+  </div>
+
+  <div class="subjects-container" id="subjectsContainer">
+
+    <div class="subject-section" data-subject="tamil">
+      <div class="subject-header">
+        <span class="subject-icon">📖</span>
+        <div class="subject-title">தமிழ் (Tamil)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">82 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 10 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 1: மொழி (தமிழின் இனிமை, கவிதைப் பட்டிமன்றம், என்ன சத்தம்..., மரபுச்சொற்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 1: மொழி (தமிழின் இனிமை, கவிதைப் பட்டிமன்றம், என்ன சத்தம்..., மரபுச்சொற்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 11 – 33 (23 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term1/01_iyal_1_mozhi/page_11.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term1/01_iyal_1_mozhi/page_11.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 2: கல்வி (மூதுரை, கல்விச்செல்வமும் பொருட்செல்வமும், வறுமையிலும் நேர்மை, பெயர்ச்சொல் வினைச்சொல்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 2: கல்வி (மூதுரை, கல்விச்செல்வமும் பொருட்செல்வமும், வறுமையிலும் நேர்மை, பெயர்ச்சொல் வினைச்சொல்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 34 – 54 (21 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term1/02_iyal_2_kalvi/page_34.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term1/02_iyal_2_kalvi/page_34.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 3: இயற்கை (கடல், படம் இங்கே! பழமொழி எங்கே?, தப்பிப் பிழைத்த மான், சொற்றொடர் அமைப்பு முறை)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 3: இயற்கை (கடல், படம் இங்கே! பழமொழி எங்கே?, தப்பிப் பிழைத்த மான், சொற்றொடர் அமைப்பு முறை)</div>
+                <div class="lesson-meta">பக்கங்கள்: 55 – 78 (24 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term1/03_iyal_3_iyarkai/page_55.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term1/03_iyal_3_iyarkai/page_55.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அகரமுதலி & பாடநூல் உருவாக்கக் குழு">
+              <div class="lesson-info">
+                <div class="lesson-name">அகரமுதலி & பாடநூல் உருவாக்கக் குழு</div>
+                <div class="lesson-meta">பக்கங்கள்: 79 – 82 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term1/04_agaramudhali/page_79.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term1/04_agaramudhali/page_79.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">78 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 10 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 1: அறிவியல் / தொழில்நுட்பம் (எதனாலே எதனாலே, அறிவின் திறவுகோல், நானும் பறக்கப் போகிறேன், மூவிடப்பெயர்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 1: அறிவியல் / தொழில்நுட்பம் (எதனாலே எதனாலே, அறிவின் திறவுகோல், நானும் பறக்கப் போகிறேன், மூவிடப்பெயர்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 11 – 30 (20 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term2/01_iyal_1_ariviyal_thozhilnutpam/page_11.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term2/01_iyal_1_ariviyal_thozhilnutpam/page_11.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 2: நாகரிகம் / பண்பாடு (திருக்குறள், தமிழர்களின் வீரக்கலைகள், கங்கை கொண்ட சோழபுரம், இணைப்புச்சொற்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 2: நாகரிகம் / பண்பாடு (திருக்குறள், தமிழர்களின் வீரக்கலைகள், கங்கை கொண்ட சோழபுரம், இணைப்புச்சொற்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 31 – 52 (22 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term2/02_iyal_2_naagarigam_panbaadu/page_31.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term2/02_iyal_2_naagarigam_panbaadu/page_31.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 3: தொழில் / வணிகம் (உழவுப் பொங்கல், விதைத் திருவிழா, நேர்மை நிறைந்த தீர்ப்பு, அடுக்குத் தொடர் இரட்டைக்கிளவி)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 3: தொழில் / வணிகம் (உழவுப் பொங்கல், விதைத் திருவிழா, நேர்மை நிறைந்த தீர்ப்பு, அடுக்குத் தொடர் இரட்டைக்கிளவி)</div>
+                <div class="lesson-meta">பக்கங்கள்: 53 – 78 (26 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term2/03_iyal_3_thozhil_vanigam/page_53.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term2/03_iyal_3_thozhil_vanigam/page_53.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">71 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 8 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 1: நாடு / சமூகம் / அரசு / நிருவாகம் (சிறுபஞ்சமூலம், வாரித் தந்த வள்ளல், தலைமைப் பண்பு, இணைச்சொற்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 1: நாடு / சமூகம் / அரசு / நிருவாகம் (சிறுபஞ்சமூலம், வாரித் தந்த வள்ளல், தலைமைப் பண்பு, இணைச்சொற்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 9 – 28 (20 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term3/01_iyal_1_naadu_samoogam/page_09.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term3/01_iyal_1_naadu_samoogam/page_09.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 2: அறம் / தத்துவம் / சிந்தனை (கல்வியே தெய்வம், நீதியை நிலைநாட்டிய சிலம்பு, காணாமல் போன பணப்பை, மயங்கொலிச்சொற்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 2: அறம் / தத்துவம் / சிந்தனை (கல்வியே தெய்வம், நீதியை நிலைநாட்டிய சிலம்பு, காணாமல் போன பணப்பை, மயங்கொலிச்சொற்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 47 (19 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term3/02_iyal_2_aram_thathuvam/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term3/02_iyal_2_aram_thathuvam/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="இயல் 3: மனிதம் / ஆளுமை (அறநெறிச்சாரம், புதுவை வளர்த்த தமிழ், நன்மையே நலம் தரும், மரபுத்தொடர்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">இயல் 3: மனிதம் / ஆளுமை (அறநெறிச்சாரம், புதுவை வளர்த்த தமிழ், நன்மையே நலம் தரும், மரபுத்தொடர்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 48 – 67 (20 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term3/03_iyal_3_manidham_aalumai/page_48.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term3/03_iyal_3_manidham_aalumai/page_48.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அகரமுதலி & பாடநூல் உருவாக்கக் குழு">
+              <div class="lesson-info">
+                <div class="lesson-name">அகரமுதலி & பாடநூல் உருவாக்கக் குழு</div>
+                <div class="lesson-meta">பக்கங்கள்: 68 – 71 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./tamil/term3/04_agaramudhali/page_68.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./tamil/term3/04_agaramudhali/page_68.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="english">
+      <div class="subject-header">
+        <span class="subject-icon">🔤</span>
+        <div class="subject-title">English</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">80 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 6 (6 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: exploring space (earth, universe, space voyage, compound words)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Exploring Space (Earth, Universe, Space voyage, Compound words)</div>
+                <div class="lesson-meta">பக்கங்கள்: 7 – 30 (24 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term1/01_exploring_space/page_07.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term1/01_exploring_space/page_07.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: my native place (grandparents village, farmer's friend, rhymes)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: My Native Place (Grandparents village, Farmer's friend, Rhymes)</div>
+                <div class="lesson-meta">பக்கங்கள்: 31 – 56 (26 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term1/02_my_native_place/page_31.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term1/02_my_native_place/page_31.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: our nation (patriotism, guardians of the nation, phonics, evaluation)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Our Nation (Patriotism, Guardians of the Nation, Phonics, Evaluation)</div>
+                <div class="lesson-meta">பக்கங்கள்: 57 – 80 (24 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term1/03_our_nation/page_57.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term1/03_our_nation/page_57.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">49 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: hospitality (welcoming guests, the gift, generosity)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Hospitality (Welcoming guests, The gift, Generosity)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 27 (23 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term2/01_hospitality/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term2/01_hospitality/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: sports (weakness is strength, the swimmer, sportsmanship)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Sports (Weakness is strength, The swimmer, Sportsmanship)</div>
+                <div class="lesson-meta">பக்கங்கள்: 28 – 49 (22 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term2/02_sports/page_28.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term2/02_sports/page_28.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">80 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: learn always (five detectives, wisdom, problem solving)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Learn Always (Five detectives, Wisdom, Problem solving)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 28 (24 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term3/01_learn_always/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term3/01_learn_always/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: we are one (the cracked coffee cup, humanity, the dreamer)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: We Are One (The cracked coffee cup, Humanity, The dreamer)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 50 (22 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term3/02_we_are_one/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term3/02_we_are_one/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: my duties (social responsibility, environment, good citizen)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: My Duties (Social responsibility, Environment, Good citizen)</div>
+                <div class="lesson-meta">பக்கங்கள்: 51 – 80 (30 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./english/term3/03_my_duties/page_51.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./english/term3/03_my_duties/page_51.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="maths_tm">
+      <div class="subject-header">
+        <span class="subject-icon">🔢</span>
+        <div class="subject-title">கணிதம் - தமிழ் வழி (Maths TM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">102 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: வடிவியல் (2d & 3d வடிவங்கள், கோணங்களின் அறிமுகம்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: வடிவியல் (2D & 3D வடிவங்கள், கோணங்களின் அறிமுகம்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 27 (23 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: எண்கள் (பத்தாயிரத்திற்கு மேற்பட்ட எண்கள், இடமதிப்பு, ஏறுவரிசை, இறங்குவரிசை)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: எண்கள் (பத்தாயிரத்திற்கு மேற்பட்ட எண்கள், இடமதிப்பு, ஏறுவரிசை, இறங்குவரிசை)</div>
+                <div class="lesson-meta">பக்கங்கள்: 28 – 54 (27 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/02_numbers/page_28.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/02_numbers/page_28.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: அமைப்புகள் (வடிவங்களில் அமைப்புகள், எண்களில் அமைப்புகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: அமைப்புகள் (வடிவங்களில் அமைப்புகள், எண்களில் அமைப்புகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 55 – 64 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/03_patterns/page_55.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/03_patterns/page_55.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 4: அளவைகள் (நீளம் / மாற்றங்கள், கூட்டல், கழித்தல், பெருக்கல், வகுத்தல்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 4: அளவைகள் (நீளம் / மாற்றங்கள், கூட்டல், கழித்தல், பெருக்கல், வகுத்தல்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 65 – 77 (13 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/04_measurements/page_65.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/04_measurements/page_65.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 5: நேரம் (இரயில்வே நேரம், கால இடைவெளி)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 5: நேரம் (இரயில்வே நேரம், கால இடைவெளி)</div>
+                <div class="lesson-meta">பக்கங்கள்: 78 – 85 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/05_time/page_78.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/05_time/page_78.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 6: தகவல் செயலாக்கம் (முறையான பட்டியல், உருவ விளக்கப்படம், செவ்வக வரைபடம்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 6: தகவல் செயலாக்கம் (முறையான பட்டியல், உருவ விளக்கப்படம், செவ்வக வரைபடம்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 100 – 99 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term1/06_information_processing/page_100.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term1/06_information_processing/page_100.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">60 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: வடிவியல் (புள்ளி, கோடு, கோட்டுத்துண்டு, கதிர், கோணங்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: வடிவியல் (புள்ளி, கோடு, கோட்டுத்துண்டு, கதிர், கோணங்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 8 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: எண்கள் (அடுக்கு எண்கள், பகா எண்கள், பகு எண்கள், காரணிச் செடி)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: எண்கள் (அடுக்கு எண்கள், பகா எண்கள், பகு எண்கள், காரணிச் செடி)</div>
+                <div class="lesson-meta">பக்கங்கள்: 9 – 18 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/02_numbers/page_09.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/02_numbers/page_09.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: அமைப்புகள் (டைல்ஸ் அமைப்புகள், சமச்சீர்த்தன்மை, சுழற்சி)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: அமைப்புகள் (டைல்ஸ் அமைப்புகள், சமச்சீர்த்தன்மை, சுழற்சி)</div>
+                <div class="lesson-meta">பக்கங்கள்: 19 – 26 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/03_patterns/page_19.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/03_patterns/page_19.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 4: அளவைகள் (நிறுத்தல் அளவை, கொள்ளளவு, கணக்கீடுகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 4: அளவைகள் (நிறுத்தல் அளவை, கொள்ளளவு, கணக்கீடுகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 27 – 43 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/04_measurements/page_27.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/04_measurements/page_27.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 5: இடைவிடாச் செயல்பாடுகள் (நேரம், பணம், தொலைவு ஒப்பீடு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 5: இடைவிடாச் செயல்பாடுகள் (நேரம், பணம், தொலைவு ஒப்பீடு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 44 – 52 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/05_interconnected_operations/page_44.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/05_interconnected_operations/page_44.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 6: தகவல் செயலாக்கம் (மாதிரிப்படுத்துதல், வரைபடங்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 6: தகவல் செயலாக்கம் (மாதிரிப்படுத்துதல், வரைபடங்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 53 – 60 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term2/06_information_processing/page_53.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term2/06_information_processing/page_53.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">72 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: வடிவியல் (சுற்றளவு, பரப்பளவு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: வடிவியல் (சுற்றளவு, பரப்பளவு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 14 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: எண்கள் (வகுபடும் தன்மை விதிகள், காரணிகள், மடங்குகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: எண்கள் (வகுபடும் தன்மை விதிகள், காரணிகள், மடங்குகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 15 – 24 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/02_numbers/page_15.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/02_numbers/page_15.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: அளவைகள் (கன அளவு / கனச்செவ்வகம், கனச்சதுரம்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: அளவைகள் (கன அளவு / கனச்செவ்வகம், கனச்சதுரம்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 31 (7 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/03_measurements/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/03_measurements/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 4: இயற்கணிதம் (சமன்பாடுகள், வடிவங்கள் அமைத்தல்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 4: இயற்கணிதம் (சமன்பாடுகள், வடிவங்கள் அமைத்தல்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 32 – 37 (6 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/04_algebra/page_32.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/04_algebra/page_32.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 5: பணம் (வாங்குதல், விற்றல், லாபம், நட்டம்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 5: பணம் (வாங்குதல், விற்றல், லாபம், நட்டம்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 38 – 49 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/05_money/page_38.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/05_money/page_38.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 6: பின்னங்கள் (தசம எண்கள், தசம எண்களின் இடமதிப்பு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 6: பின்னங்கள் (தசம எண்கள், தசம எண்களின் இடமதிப்பு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 50 – 66 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/06_fractions/page_50.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/06_fractions/page_50.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 7: தகவல் செயலாக்கம் (முறைப்படுத்தப்பட்ட செயல்பாடுகள், பதில்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 7: தகவல் செயலாக்கம் (முறைப்படுத்தப்பட்ட செயல்பாடுகள், பதில்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 67 – 72 (6 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_tm/term3/07_information_processing/page_67.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_tm/term3/07_information_processing/page_67.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="maths_em">
+      <div class="subject-header">
+        <span class="subject-icon">📐</span>
+        <div class="subject-title">Mathematics - English Medium (Maths EM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">102 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: geometry (2d and 3d shapes, introduction to angles)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Geometry (2D and 3D shapes, Introduction to angles)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 27 (23 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: numbers (numbers beyond 10,000, place value, ascending & descending)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Numbers (Numbers beyond 10,000, Place value, Ascending & Descending)</div>
+                <div class="lesson-meta">பக்கங்கள்: 28 – 54 (27 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/02_numbers/page_28.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/02_numbers/page_28.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: patterns (patterns in shapes, patterns in numbers)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Patterns (Patterns in shapes, Patterns in numbers)</div>
+                <div class="lesson-meta">பக்கங்கள்: 55 – 64 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/03_patterns/page_55.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/03_patterns/page_55.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 4: measurements (length / conversions, four operations)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 4: Measurements (Length / Conversions, Four operations)</div>
+                <div class="lesson-meta">பக்கங்கள்: 65 – 77 (13 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/04_measurements/page_65.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/04_measurements/page_65.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 5: time (railway time, time intervals)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 5: Time (Railway time, Time intervals)</div>
+                <div class="lesson-meta">பக்கங்கள்: 78 – 85 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/05_time/page_78.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/05_time/page_78.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 6: information processing (systematic listing, pictograph, bar diagram)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 6: Information Processing (Systematic listing, Pictograph, Bar diagram)</div>
+                <div class="lesson-meta">பக்கங்கள்: 100 – 99 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term1/06_information_processing/page_100.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term1/06_information_processing/page_100.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">60 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: geometry (point, line, line segment, ray, angles)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Geometry (Point, Line, Line segment, Ray, Angles)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 8 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: numbers (square numbers, prime numbers, composite numbers, factor tree)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Numbers (Square numbers, Prime numbers, Composite numbers, Factor tree)</div>
+                <div class="lesson-meta">பக்கங்கள்: 9 – 18 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/02_numbers/page_09.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/02_numbers/page_09.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: patterns (tiling patterns, symmetry, rotation)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Patterns (Tiling patterns, Symmetry, Rotation)</div>
+                <div class="lesson-meta">பக்கங்கள்: 19 – 26 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/03_patterns/page_19.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/03_patterns/page_19.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 4: measurements (weight, capacity, calculations)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 4: Measurements (Weight, Capacity, Calculations)</div>
+                <div class="lesson-meta">பக்கங்கள்: 27 – 43 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/04_measurements/page_27.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/04_measurements/page_27.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 5: interconnected operations (time, money, distance comparison)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 5: Interconnected Operations (Time, Money, Distance comparison)</div>
+                <div class="lesson-meta">பக்கங்கள்: 44 – 52 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/05_interconnected_operations/page_44.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/05_interconnected_operations/page_44.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 6: information processing (modelling, graphs)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 6: Information Processing (Modelling, Graphs)</div>
+                <div class="lesson-meta">பக்கங்கள்: 53 – 60 (8 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term2/06_information_processing/page_53.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term2/06_information_processing/page_53.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">72 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: geometry (perimeter and area)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Geometry (Perimeter and Area)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 14 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/01_geometry/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/01_geometry/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: numbers (divisibility rules, factors, multiples)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Numbers (Divisibility rules, Factors, Multiples)</div>
+                <div class="lesson-meta">பக்கங்கள்: 15 – 24 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/02_numbers/page_15.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/02_numbers/page_15.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: measurements (volume / cuboid, cube)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Measurements (Volume / Cuboid, Cube)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 31 (7 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/03_measurements/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/03_measurements/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 4: algebra (equations, patterns)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 4: Algebra (Equations, Patterns)</div>
+                <div class="lesson-meta">பக்கங்கள்: 32 – 37 (6 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/04_algebra/page_32.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/04_algebra/page_32.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 5: money (buying, selling, profit, loss)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 5: Money (Buying, Selling, Profit, Loss)</div>
+                <div class="lesson-meta">பக்கங்கள்: 38 – 49 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/05_money/page_38.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/05_money/page_38.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 6: fractions (decimals, decimal place values)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 6: Fractions (Decimals, Decimal place values)</div>
+                <div class="lesson-meta">பக்கங்கள்: 50 – 66 (17 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/06_fractions/page_50.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/06_fractions/page_50.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 7: information processing (systematic operations, answers)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 7: Information Processing (Systematic operations, Answers)</div>
+                <div class="lesson-meta">பக்கங்கள்: 67 – 72 (6 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./maths_em/term3/07_information_processing/page_67.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./maths_em/term3/07_information_processing/page_67.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="science_tm">
+      <div class="subject-header">
+        <span class="subject-icon">🔬</span>
+        <div class="subject-title">அறிவியல் - தமிழ் வழி (Science TM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">42 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: உறுப்பு மண்டலங்கள் (செரிமானம், சுவாசம், சுற்றோட்டம், கழிவுநீக்கம், நரம்பு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: உறுப்பு மண்டலங்கள் (செரிமானம், சுவாசம், சுற்றோட்டம், கழிவுநீக்கம், நரம்பு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 14 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term1/01_organ_systems/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term1/01_organ_systems/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: பருப்பொருள்கள் மற்றும் மூலப்பொருள்கள் (பொருள்களின் நிலைகள், இழைகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: பருப்பொருள்கள் மற்றும் மூலப்பொருள்கள் (பொருள்களின் நிலைகள், இழைகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 15 – 24 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term1/02_matter_and_materials/page_15.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term1/02_matter_and_materials/page_15.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: ஆற்றல் (இயக்க, நிலை, வேதி, மின், வெப்ப, ஒளி ஆற்றல்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: ஆற்றல் (இயக்க, நிலை, வேதி, மின், வெப்ப, ஒளி ஆற்றல்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 33 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term1/03_energy/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term1/03_energy/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 4: அன்றாட வாழ்வில் அறிவியல் (விஞ்ஞானிகள், நீல வானம், உபயோகப் பொருள்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 4: அன்றாட வாழ்வில் அறிவியல் (விஞ்ஞானிகள், நீல வானம், உபயோகப் பொருள்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 34 – 42 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term1/04_science_in_everyday_life/page_34.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term1/04_science_in_everyday_life/page_34.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">39 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: உணவு (உணவு கெட்டுப்போதல், பதப்படுத்துதல், சமச்சீர் உணவு, உடல் பருமன்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: உணவு (உணவு கெட்டுப்போதல், பதப்படுத்துதல், சமச்சீர் உணவு, உடல் பருமன்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 16 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term2/01_food/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term2/01_food/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: நீர் (நீர் சுழற்சி, நிலத்தடி நீர், நீர் மாசுபாடு, பாதுகாப்பு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: நீர் (நீர் சுழற்சி, நிலத்தடி நீர், நீர் மாசுபாடு, பாதுகாப்பு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 17 – 28 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term2/02_water/page_17.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term2/02_water/page_17.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: தாவரங்கள் (இனப்பெருக்கம், மகரந்தச்சேர்க்கை, விதைகள் பரவுதல்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: தாவரங்கள் (இனப்பெருக்கம், மகரந்தச்சேர்க்கை, விதைகள் பரவுதல்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 39 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term2/03_plants/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term2/03_plants/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">40 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: நமது சுற்றுச்சூழல் (பண்ணைகள், பால் பண்ணை, கோழிப் பண்ணை, மண்புழு உரம்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: நமது சுற்றுச்சூழல் (பண்ணைகள், பால் பண்ணை, கோழிப் பண்ணை, மண்புழு உரம்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 15 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term3/01_our_environment/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term3/01_our_environment/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: விலங்குகள் (இனப்பெருக்கம், பாலூட்டிகள், வனவிலங்கு பாதுகாப்பு)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: விலங்குகள் (இனப்பெருக்கம், பாலூட்டிகள், வனவிலங்கு பாதுகாப்பு)</div>
+                <div class="lesson-meta">பக்கங்கள்: 16 – 28 (13 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term3/02_animals/page_16.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term3/02_animals/page_16.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: காற்று (காற்றின் பண்புகள், வளிமண்டலம், காற்று மாசுபாடு, நோய்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: காற்று (காற்றின் பண்புகள், வளிமண்டலம், காற்று மாசுபாடு, நோய்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 40 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_tm/term3/03_air/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_tm/term3/03_air/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="science_em">
+      <div class="subject-header">
+        <span class="subject-icon">🧪</span>
+        <div class="subject-title">Science - English Medium (Science EM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">42 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: organ systems (digestive, respiratory, circulatory, excretory, nervous)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Organ Systems (Digestive, Respiratory, Circulatory, Excretory, Nervous)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 14 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term1/01_organ_systems/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term1/01_organ_systems/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: matter and materials (states of matter, fibres, grains)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Matter and Materials (States of matter, Fibres, Grains)</div>
+                <div class="lesson-meta">பக்கங்கள்: 15 – 24 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term1/02_matter_and_materials/page_15.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term1/02_matter_and_materials/page_15.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: energy (kinetic, potential, chemical, electrical, thermal, light)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Energy (Kinetic, Potential, Chemical, Electrical, Thermal, Light)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 33 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term1/03_energy/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term1/03_energy/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 4: science in everyday life (scientists, blue sky, household appliances)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 4: Science in Everyday Life (Scientists, Blue sky, Household appliances)</div>
+                <div class="lesson-meta">பக்கங்கள்: 34 – 42 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term1/04_science_in_everyday_life/page_34.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term1/04_science_in_everyday_life/page_34.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">39 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: food (food spoilage, preservation, balanced diet, obesity)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Food (Food spoilage, Preservation, Balanced diet, Obesity)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 16 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term2/01_food/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term2/01_food/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: water (water cycle, groundwater, water pollution, conservation)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Water (Water cycle, Groundwater, Water pollution, Conservation)</div>
+                <div class="lesson-meta">பக்கங்கள்: 17 – 28 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term2/02_water/page_17.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term2/02_water/page_17.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: plants (reproduction, pollination, seed dispersal)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Plants (Reproduction, Pollination, Seed dispersal)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 39 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term2/03_plants/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term2/03_plants/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">40 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: our environment (farms, dairy farm, poultry farm, vermiculture)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Our Environment (Farms, Dairy farm, Poultry farm, Vermiculture)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 15 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term3/01_our_environment/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term3/01_our_environment/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: animals (reproduction, mammals, wildlife conservation, sanctuaries)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Animals (Reproduction, Mammals, Wildlife conservation, Sanctuaries)</div>
+                <div class="lesson-meta">பக்கங்கள்: 16 – 28 (13 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term3/02_animals/page_16.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term3/02_animals/page_16.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: air (properties of air, atmosphere, air pollution, airborne diseases)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Air (Properties of air, Atmosphere, Air pollution, Airborne diseases)</div>
+                <div class="lesson-meta">பக்கங்கள்: 29 – 40 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./science_em/term3/03_air/page_29.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./science_em/term3/03_air/page_29.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="social_science_tm">
+      <div class="subject-header">
+        <span class="subject-icon">🌍</span>
+        <div class="subject-title">சமூக அறிவியல் - தமிழ் வழி (Social Science TM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">52 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: நமது பூமி (சூரிய குடும்பம், பூமி, கண்டங்கள், பெருங்கடல்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: நமது பூமி (சூரிய குடும்பம், பூமி, கண்டங்கள், பெருங்கடல்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 15 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term1/01_our_earth/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term1/01_our_earth/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: வரலாற்றை நோக்கி (பழங்கற்காலம், புதிய கற்காலம், சிந்து சமவெளி)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: வரலாற்றை நோக்கி (பழங்கற்காலம், புதிய கற்காலம், சிந்து சமவெளி)</div>
+                <div class="lesson-meta">பக்கங்கள்: 16 – 24 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term1/02_towards_history/page_16.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term1/02_towards_history/page_16.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: நல்ல குடிமகன் (தனிமனித விழுமியங்கள், சமூக விழுமியங்கள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: நல்ல குடிமகன் (தனிமனித விழுமியங்கள், சமூக விழுமியங்கள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 34 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term1/03_good_citizen/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term1/03_good_citizen/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 4: வளிமண்டலம் (வானிலை, காலநிலை, காற்றழுத்தம், மேகங்கள், மழை)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 4: வளிமண்டலம் (வானிலை, காலநிலை, காற்றழுத்தம், மேகங்கள், மழை)</div>
+                <div class="lesson-meta">பக்கங்கள்: 35 – 52 (18 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term1/04_atmosphere/page_35.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term1/04_atmosphere/page_35.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">46 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: பண்டைய அகழ்வாராய்ச்சி (தொல்பொருட்கள், ஆதிச்சநல்லூர், கீழடி, கொடுமணல்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: பண்டைய அகழ்வாராய்ச்சி (தொல்பொருட்கள், ஆதிச்சநல்லூர், கீழடி, கொடுமணல்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 16 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term2/01_ancient_excavation/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term2/01_ancient_excavation/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: நீர்க்கோளம் (பெருங்கடல்கள், நீர் சுழற்சி, நீர்நிலைகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: நீர்க்கோளம் (பெருங்கடல்கள், நீர் சுழற்சி, நீர்நிலைகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 17 – 31 (15 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term2/02_hydrosphere/page_17.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term2/02_hydrosphere/page_17.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: உலகிலுள்ள கண்டங்கள் (7 கண்டங்கள் - சிறப்புகள், நாடுகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: உலகிலுள்ள கண்டங்கள் (7 கண்டங்கள் - சிறப்புகள், நாடுகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 32 – 46 (15 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term2/03_continents_of_the_world/page_32.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term2/03_continents_of_the_world/page_32.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">44 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="முகப்புப் பகுதி & பொருளடக்கம்">
+              <div class="lesson-info">
+                <div class="lesson-name">முகப்புப் பகுதி & பொருளடக்கம்</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 1: கோட்டைகளும் அரண்மனைகளும் (வேலூர் கோட்டை, திண்டுக்கல், திருமலை நாயக்கர் அரண்மனை)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 1: கோட்டைகளும் அரண்மனைகளும் (வேலூர் கோட்டை, திண்டுக்கல், திருமலை நாயக்கர் அரண்மனை)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 18 (14 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term3/01_forts_and_palaces/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term3/01_forts_and_palaces/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 2: வேளாண்மை (விவசாய வகைகள், பாசனம், பயிர் வகைகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 2: வேளாண்மை (விவசாய வகைகள், பாசனம், பயிர் வகைகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 19 – 32 (14 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term3/02_agriculture/page_19.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term3/02_agriculture/page_19.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="அலகு 3: கல்வி உரிமைகள் (இலவச கட்டாயக் கல்வி, சட்டம், உரிமைகள்)">
+              <div class="lesson-info">
+                <div class="lesson-name">அலகு 3: கல்வி உரிமைகள் (இலவச கட்டாயக் கல்வி, சட்டம், உரிமைகள்)</div>
+                <div class="lesson-meta">பக்கங்கள்: 33 – 44 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_tm/term3/03_educational_rights/page_33.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_tm/term3/03_educational_rights/page_33.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="subject-section" data-subject="social_science_em">
+      <div class="subject-header">
+        <span class="subject-icon">🗺️</span>
+        <div class="subject-title">Social Science - English Medium (Social Science EM)</div>
+      </div>
+      <div class="terms-row">
+    
+        <div class="term-box" data-term="term1">
+          <div class="term-box-title">
+            <span>பருவம் 1 (Term 1)</span>
+            <span class="term-box-count">52 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term1/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term1/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: our earth (solar family, earth, continents, oceans)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Our Earth (Solar family, Earth, Continents, Oceans)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 15 (11 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term1/01_our_earth/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term1/01_our_earth/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: towards history (stone age, neolithic age, indus valley)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Towards History (Stone age, Neolithic age, Indus Valley)</div>
+                <div class="lesson-meta">பக்கங்கள்: 16 – 24 (9 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term1/02_towards_history/page_16.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term1/02_towards_history/page_16.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: good citizen (personal values, social values)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Good Citizen (Personal values, Social values)</div>
+                <div class="lesson-meta">பக்கங்கள்: 25 – 34 (10 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term1/03_good_citizen/page_25.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term1/03_good_citizen/page_25.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 4: atmosphere (weather, climate, air pressure, clouds, rain)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 4: Atmosphere (Weather, Climate, Air pressure, Clouds, Rain)</div>
+                <div class="lesson-meta">பக்கங்கள்: 35 – 52 (18 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term1/04_atmosphere/page_35.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term1/04_atmosphere/page_35.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term2">
+          <div class="term-box-title">
+            <span>பருவம் 2 (Term 2)</span>
+            <span class="term-box-count">46 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term2/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term2/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: ancient excavation (artifacts, adichanallur, keeladi, kodumanal)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Ancient Excavation (Artifacts, Adichanallur, Keeladi, Kodumanal)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 16 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term2/01_ancient_excavation/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term2/01_ancient_excavation/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: hydrosphere (oceans, water cycle, water bodies)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Hydrosphere (Oceans, Water cycle, Water bodies)</div>
+                <div class="lesson-meta">பக்கங்கள்: 17 – 31 (15 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term2/02_hydrosphere/page_17.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term2/02_hydrosphere/page_17.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: continents of the world (7 continents - features, countries)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Continents of the World (7 continents - features, countries)</div>
+                <div class="lesson-meta">பக்கங்கள்: 32 – 46 (15 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term2/03_continents_of_the_world/page_32.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term2/03_continents_of_the_world/page_32.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+        <div class="term-box" data-term="term3">
+          <div class="term-box-title">
+            <span>பருவம் 3 (Term 3)</span>
+            <span class="term-box-count">44 பக்கங்கள்</span>
+          </div>
+          <ul class="lesson-list">
+        
+            <li class="lesson-card" data-title="preliminary pages & index">
+              <div class="lesson-info">
+                <div class="lesson-name">Preliminary Pages & Index</div>
+                <div class="lesson-meta">பக்கங்கள்: 1 – 4 (4 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term3/00_prelims/page_01.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term3/00_prelims/page_01.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 1: forts and palaces (vellore fort, dindigul, thirumalai nayakkar mahal)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 1: Forts and Palaces (Vellore Fort, Dindigul, Thirumalai Nayakkar Mahal)</div>
+                <div class="lesson-meta">பக்கங்கள்: 5 – 18 (14 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term3/01_forts_and_palaces/page_05.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term3/01_forts_and_palaces/page_05.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 2: agriculture (types of farming, irrigation, crops)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 2: Agriculture (Types of farming, Irrigation, Crops)</div>
+                <div class="lesson-meta">பக்கங்கள்: 19 – 32 (14 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term3/02_agriculture/page_19.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term3/02_agriculture/page_19.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+            <li class="lesson-card" data-title="unit 3: educational rights (free compulsory education, rights, acts)">
+              <div class="lesson-info">
+                <div class="lesson-name">Unit 3: Educational Rights (Free compulsory education, Rights, Acts)</div>
+                <div class="lesson-meta">பக்கங்கள்: 33 – 44 (12 பக்கங்கள்)</div>
+              </div>
+              <div class="action-links">
+                <a class="view-btn" href="./viewer.html?pdf=./social_science_em/term3/03_educational_rights/page_33.pdf" target="_blank">🖼️ திற</a>
+                <a class="pdf-btn" href="./social_science_em/term3/03_educational_rights/page_33.pdf" target="_blank" title="நேரடி PDF">PDF</a>
+              </div>
+            </li>
+            
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="footer">
+    தமிழ்நாடு பள்ளிக் கல்வித் துறை — 5-ஆம் வகுப்பு டிஜிட்டல் களஞ்சியம்<br/>
+    Powered by <a href="https://pages.cloudflare.com/" target="_blank">Cloudflare Pages</a> &amp; GitHub Edge Infrastructure
+  </div>
+
+  <script>
+    let activeTerm = 'all';
+
+    function setTermFilter(term, btn) {
+      activeTerm = term;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function filterCards() {
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      document.querySelectorAll('.subject-section').forEach(sec => {
+        let anyVisibleInSec = false;
+
+        sec.querySelectorAll('.term-box').forEach(tBox => {
+          const tName = tBox.getAttribute('data-term');
+          const termMatches = (activeTerm === 'all' || activeTerm === tName);
+
+          let anyVisibleInTerm = false;
+          tBox.querySelectorAll('.lesson-card').forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const queryMatches = (q === '' || title.includes(q));
+
+            if (termMatches && queryMatches) {
+              card.style.display = 'flex';
+              anyVisibleInTerm = true;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          if (termMatches && anyVisibleInTerm) {
+            tBox.style.display = 'block';
+            anyVisibleInSec = true;
+          } else {
+            tBox.style.display = 'none';
+          }
+        });
+
+        sec.style.display = anyVisibleInSec ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
