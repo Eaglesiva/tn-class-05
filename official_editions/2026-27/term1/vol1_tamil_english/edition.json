@@ -11,8 +11,8 @@
   "official_sha256": "120f22d28a8519555c06a5f2f627d43073b7fc38434612fc0ceb86f9c02b3a7f",
   "official_md5": "128ed6c2fb6608e821d913d7c8b4400c",
   "total_pages": 160,
-  "split_date_utc": "2026-11-04T05:46:50.377519+00:00",
-  "total_split_bytes": 85939630,
+  "split_date_utc": "2026-11-04T19:03:43.031051+00:00",
+  "total_split_bytes": 85939628,
   "all_pages_validated": true,
   "toc_status": "MANUAL_REVIEW_REQUIRED"
 }

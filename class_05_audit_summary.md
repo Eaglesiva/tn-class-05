@@ -1,18 +1,13 @@
 # SCERT Class 5 Textbook Edition Verification Audit Report (30 Records)
 
 **Audit Execution Environment:** GitHub Actions Runner (Ubuntu 22.04 LTS)  
-**Execution Timestamp:** 2026-11-04T05:46:50.377519+00:00 UTC  
+**Execution Timestamp:** 2026-11-04T19:03:43.031051+00:00 UTC  
 **Target Repository:** Eaglesiva/tn-class-05  
 **Target Branch:** scert/class-05/audit-2026-27  
 **Live Official API URL:** `https://emis3.tnschools.gov.in/api/get_scert_books`  
 **Raw API Snapshot SHA-256:** `404f283443b1f7a6a0fae814092aae556d0419ad2b4b2c0b0a0f7ebd756cc3e4`  
 
 ---
-
-## Evidence correction (2026-11-05)
-
-- **Term-II:** The Textbook Corporation's 2026-27 notice announced Term-II textbook sales for Classes 1-7 from **22.09.2026**. Therefore the Term-II HTTP 403 records in this audit are **CDN/URL retrieval unavailable at audit time**, not evidence that these books were not released.
-- **Term-III:** The corresponding API records are present and GET returned HTTP 403, but the current 2026-27 sales notices checked do not supply a Term-III release date. Keep the state as **CDN_UNAVAILABLE_AT_CHECK / RELEASE_STATUS_UNCONFIRMED**; do not call it confirmed unreleased.
 
 ## 1. Class-Wide Metric Reconciliation Table (30 Records Complete)
 
