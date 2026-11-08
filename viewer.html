@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
-  <title>தமிழ்நாடு பாடநூல் அசல் அச்சுப் பார்வை</title>
+  <title>தமிழ்நாடு பாடநூல் அசல் அச்சுப் பார்வை — வகுப்பு 5</title>
   <script src="./vendor/pdfjs/pdf.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -306,7 +306,8 @@
 
     // Parse URL params
     const params = new URLSearchParams(window.location.search);
-    const pdfUrl = params.get('pdf') || './tamil/term1/iel_1/01_inbatamil/page_02.pdf';
+    const defaultPdf = './books/2026-27/term1/vol1_tamil_english/pages/page-001.pdf';
+    const pdfUrl = params.get('pdf') || defaultPdf;
     const customTitle = params.get('title');
 
     // Check if embedded in iframe or running standalone
@@ -318,27 +319,78 @@
     const btnNextPage = document.getElementById('btnNextPage');
 
     let currentPageNum = 1;
-    const match = pdfUrl.match(/page_(\d+)\.pdf/);
+    const match = pdfUrl.match(/page[-_](\d+)\.pdf/);
     if (match) {
-      currentPageNum = parseInt(match[1]);
+      currentPageNum = parseInt(match[1], 10);
     }
 
-    // Load the term's flat page list so navigation can cross unit folders correctly
+    // Helper to normalize path comparisons
+    const norm = p => p.replace(/^\.\//, '').trim();
+    const normalizedPdf = norm(pdfUrl);
+
+    // Book metadata mapping for friendly header titles
+    const bookTitleMap = {
+      'term1/vol1_tamil_english': 'வகுப்பு 5 — பருவம் 1: தொகுதி 1 (தமிழ் & ஆங்கிலம்)',
+      'term1/vol2_maths_sci_soc_tm': 'வகுப்பு 5 — பருவம் 1: தொகுதி 2 (கணக்கு, அறிவியல் & சமூக அறிவியல் - தமிழ் வழி)',
+      'term1/vol2_maths_sci_soc_em': 'Class 5 — Term 1: Volume 2 (Mathematics, Science & Social Science - English Medium)',
+      'term2/vol1_tamil_english': 'வகுப்பு 5 — பருவம் 2: தொகுதி 1 (தமிழ் & ஆங்கிலம்)',
+      'term2/vol2_maths_sci_soc_tm': 'வகுப்பு 5 — பருவம் 2: தொகுதி 2 (கணக்கு, அறிவியல் & சமூக அறிவியல் - தமிழ் வழி)',
+      'term2/vol2_maths_sci_soc_em': 'Class 5 — Term 2: Volume 2 (Mathematics, Science & Social Science - English Medium)',
+      'tamil/term3': 'வகுப்பு 5 — தமிழ் (பருவம் 3 - பழைய பதிப்பு)',
+      'english/term3': 'Class 5 — English (Term 3 - Legacy Edition)',
+      'maths_tm/term3': 'வகுப்பு 5 — கணக்கு (பருவம் 3 - தமிழ் வழி - பழைய பதிப்பு)',
+      'maths_em/term3': 'Class 5 — Mathematics (Term 3 - English Medium - Legacy Edition)',
+      'science_tm/term3': 'வகுப்பு 5 — அறிவியல் (பருவம் 3 - தமிழ் வழி - பழைய பதிப்பு)',
+      'science_em/term3': 'Class 5 — Science (Term 3 - English Medium - Legacy Edition)',
+      'social_science_tm/term3': 'வகுப்பு 5 — சமூக அறிவியல் (பருவம் 3 - தமிழ் வழி - பழைய பதிப்பு)',
+      'social_science_em/term3': 'Class 5 — Social Science (Term 3 - English Medium - Legacy Edition)'
+    };
+
+    let autoDetectedTitle = null;
+    for (const [key, bTitle] of Object.entries(bookTitleMap)) {
+      if (normalizedPdf.includes(key)) {
+        autoDetectedTitle = `${bTitle} — பக்கம் ${currentPageNum}`;
+        break;
+      }
+    }
+
+    // Resolve book directory and pages.json URL
+    let pagesJsonUrl = null;
+    let bookPrefix = '';
+    if (normalizedPdf.includes('/pages/')) {
+      // 2026 Edition format: books/2026-27/{term}/{vol}/pages/page-xxx.pdf
+      bookPrefix = normalizedPdf.substring(0, normalizedPdf.lastIndexOf('/pages/'));
+      pagesJsonUrl = './' + bookPrefix + '/pages.json';
+    } else {
+      // Legacy format fallback: {subject}/{term}/...
+      const bookMatch = normalizedPdf.match(/^([^/]+)\/([^/]+)\//);
+      if (bookMatch) {
+        bookPrefix = `${bookMatch[1]}/${bookMatch[2]}`;
+        pagesJsonUrl = `./${bookPrefix}/pages.json`;
+      }
+    }
+
+    // Load book's pages.json manifest for full sequential page navigation
     let pageList = null;
     let pageListIndex = -1;
-    const bookMatch = pdfUrl.match(/^\.\/([^/]+)\/([^/]+)\//);
-    if (bookMatch) {
-      const pagesJsonUrl = `./${bookMatch[1]}/${bookMatch[2]}/pages.json`;
+    if (pagesJsonUrl) {
       fetch(pagesJsonUrl).then(r => r.ok ? r.json() : null).then(list => {
         if (!Array.isArray(list)) return;
-        pageList = list;
-        pageListIndex = list.indexOf(pdfUrl);
-        if (pageListIndex === -1) {
-          const norm = p => p.replace(/^\.\//, '');
-          pageListIndex = list.findIndex(p => norm(p) === norm(pdfUrl));
-        }
+        pageList = list.map(item => {
+          if (item.startsWith('pages/')) {
+            return `./${bookPrefix}/${item}`;
+          }
+          if (item.startsWith('./') || item.startsWith('books/')) {
+            return item.startsWith('./') ? item : `./${item}`;
+          }
+          return `./${bookPrefix}/${item}`;
+        });
+        pageListIndex = pageList.findIndex(p => norm(p) === normalizedPdf);
         if (pageListIndex <= 0) btnPrevPage.disabled = true;
-        if (pageListIndex === list.length - 1) btnNextPage.disabled = true;
+        if (pageListIndex === -1 || pageListIndex >= pageList.length - 1) btnNextPage.disabled = true;
+        if (pageListIndex !== -1 && pageIndicator) {
+          pageIndicator.textContent = `பக்கம் ${pageListIndex + 1} / ${pageList.length}`;
+        }
       }).catch(() => { pageList = null; });
     }
 
@@ -351,8 +403,10 @@
     const docTitle = document.getElementById('docTitle');
     if (customTitle) {
       docTitle.textContent = customTitle;
+    } else if (autoDetectedTitle) {
+      docTitle.textContent = autoDetectedTitle;
     } else if (match) {
-      docTitle.textContent = `இயல் பக்கம் ${currentPageNum}`;
+      docTitle.textContent = `பாடநூல் பக்கம் ${currentPageNum}`;
     }
 
     let pdfDoc = null;
@@ -389,7 +443,7 @@
     // Page Turners Navigation (Standalone Mode - Retains Zoom!)
     // ----------------------------------------------------
     function navigatePage(direction) {
-      // Prefer the flat page list (crosses unit/lesson folder boundaries correctly)
+      // Prefer the flat page list from pages.json
       if (pageList && pageListIndex !== -1) {
         const targetIndex = pageListIndex + direction;
         if (targetIndex < 0 || targetIndex >= pageList.length) return;
@@ -399,15 +453,31 @@
         window.location.search = newSearch.toString();
         return;
       }
-      // Fallback: naive same-folder page number increment (used only if pages.json is unavailable)
+      // Fallback: numeric page increment
       const targetPage = currentPageNum + direction;
       if (targetPage < 1) return;
-      const targetStr = targetPage.toString().padStart(2, '0');
-      const newUrl = pdfUrl.replace(/page_\d+\.pdf/, `page_${targetStr}.pdf`);
+      let newUrl = pdfUrl;
+      if (pdfUrl.includes('page-')) {
+        const targetStr = targetPage.toString().padStart(3, '0');
+        newUrl = pdfUrl.replace(/page-\d+\.pdf/, `page-${targetStr}.pdf`);
+      } else {
+        const targetStr = targetPage.toString().padStart(2, '0');
+        newUrl = pdfUrl.replace(/page_\d+\.pdf/, `page_${targetStr}.pdf`);
+      }
       const newSearch = new URLSearchParams(window.location.search);
       newSearch.set('pdf', newUrl);
       window.location.search = newSearch.toString();
     }
+
+    // Keyboard navigation (Left: Previous, Right: Next)
+    document.addEventListener('keydown', (e) => {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowLeft') {
+        navigatePage(-1);
+      } else if (e.key === 'ArrowRight') {
+        navigatePage(1);
+      }
+    });
 
     // ----------------------------------------------------
     // IndexedDB Cache Layer (100% Offline, Zero Redundant Downloads)
